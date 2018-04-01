@@ -1,0 +1,15 @@
+$black: #000;
+
+.grey {
+  .text {
+    color: grey;
+  }
+}
+
+.bg {
+  background-color: $black;
+}
+
+.class1, .class2 {
+  color:red;
+}
