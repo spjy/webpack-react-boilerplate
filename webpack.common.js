@@ -1,11 +1,11 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.join(__dirname, '/build'),
-		filename: 'bundle.js'
+		filename: '[name].bundle.js',
+		chunkFilename: '[name].bundle.js'
 	},
 	module: {
 		rules: [
@@ -22,9 +22,7 @@ module.exports = {
 					{
 						loader: 'file-loader',
 						options: {
-							useRelativePath: true,
-							publicPath: 'public/images/',
-							outputPath: 'images/'
+							name: '[name]-[hash:8].[ext]'
 						}
 					}
 				]
@@ -45,9 +43,10 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: './public/index.html',
-		})
-	]
+	resolve: {
+		alias: {
+			images: path.resolve(__dirname, '/public/images/'),
+			css: path.resolve(__dirname, '/public/css')
+		}
+	}
 }
