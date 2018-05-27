@@ -24,9 +24,13 @@ module.exports = merge(common, {
         minifyJS: true,
         minifyCSS: true,
         minifyURLs: true
-      }
+      },
+      optimization: {
+        splitChunks: {
+          chunks: 'all'
+        }
+      },
     }),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'common' }),
     new webpack.optimize.OccurrenceOrderPlugin(), // Keep builds consistent
     new CleanWebpackPlugin(['build']), // clean the output directory before building
     new UglifyJSPlugin({
